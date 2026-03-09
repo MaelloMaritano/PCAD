@@ -24,6 +24,7 @@ void* philo(void* ptr)
 	{
 		pthread_mutex_lock(left_ch);
 		printf("Il filosofo %d ha preso la bacchetta %d\n", *id, *id);
+		sleep(0.5);
 		pthread_mutex_lock(right_ch);
 		printf("Il filosofo %d ha preso la bacchetta %d\n", *id, (*id+5-1)%5);
 
