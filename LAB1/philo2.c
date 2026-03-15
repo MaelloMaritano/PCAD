@@ -16,23 +16,35 @@ static pthread_mutex_t ch[]=
 
 void* philo(void* ptr)
 {
-	int* id=(int*) ptr;
-	printf("Il filosofo %d sta pensando\n", *id);
-	pthread_mutex_t* left_ch=&ch[*id];
-	pthread_mutex_t* right_ch=&ch[(*id+5-1)%5];
+	int id=*(int*)ptr;
+	printf("Il filosofo %d sta pensando\n", id);
+	pthread_mutex_t* left_ch=&ch[id];
+	pthread_mutex_t* right_ch=&ch[(id+5-1)%5];
 	for(int i=1; i<=5; i++)
 	{
-		pthread_mutex_lock(left_ch);
-		printf("Il filosofo %d ha preso la bacchetta %d\n", *id, *id);
-		pthread_mutex_lock(right_ch);
-		printf("Il filosofo %d ha preso la bacchetta %d\n", *id, (*id+5-1)%5);
-
-		printf("Il filosofo %d sta mangiando per la %d volta\n", *id, i);
+		if(id==0)
+		{
+			pthread_mutex_lock(right_ch);
+			printf("Il filosofo %d ha preso la bacchetta %d\n", id, (id+5-1)%5);
+			sleep(0.5);
+			pthread_mutex_lock(left_ch);
+			printf("Il filosofo %d ha preso la bacchetta %d\n", id, id);
+		}
+		else
+		{
+			pthread_mutex_lock(left_ch);
+			printf("Il filosofo %d ha preso la bacchetta %d\n", id, id);
+			sleep(0.5);
+			pthread_mutex_lock(right_ch);
+			printf("Il filosofo %d ha preso la bacchetta %d\n", id, (id+5-1)%5);
+		}
+		
+		printf("Il filosofo %d sta mangiando per la %d volta\n", id, i);
 		
 		pthread_mutex_unlock(left_ch);
 		pthread_mutex_unlock(right_ch);
 		
-		printf("Il filosofo %d ha posato le bacchette\n", *id);
+		printf("Il filosofo %d ha posato le bacchette\n", id);
 	}
 	return NULL;
 }
