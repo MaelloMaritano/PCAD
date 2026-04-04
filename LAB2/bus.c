@@ -33,6 +33,8 @@ void* bus_func()
 		//Il bus parte
 		printf("Il bus gira\n");
 		sleep(1);
+		printf("Il bus si ferma\n");
+		sleep(1);
 		//Il bus ritorna, ora i passeggeri possono scendere
 		pthread_mutex_lock(&off_lock);
 		off_var=1;
