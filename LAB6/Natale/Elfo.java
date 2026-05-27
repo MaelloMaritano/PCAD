@@ -3,9 +3,9 @@ package Natale;
 public class Elfo implements Runnable
 {
 	private String nome;
-	private StatoElfi stato;
+	private Stato stato;
 
-	public Elfo(String _nome, StatoElfi _stato)
+	public Elfo(String _nome, Stato _stato)
 	{
 		nome=_nome;
 		stato=_stato;

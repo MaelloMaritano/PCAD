@@ -2,9 +2,9 @@ package Natale;
 public class Renna implements Runnable
 {
 	private String nome;
-	private StatoRenne stato;
+	private Stato stato;
 
-	public Renna(String _nome, StatoRenne _stato)
+	public Renna(String _nome, Stato _stato)
 	{
 		nome=_nome;
 		stato=_stato;

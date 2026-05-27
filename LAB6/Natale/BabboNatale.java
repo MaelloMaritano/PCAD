@@ -1,12 +1,12 @@
 package Natale;
 public class BabboNatale implements Runnable
 {
-	private StatoRenne statoRenne;
+	private Stato stato;
 	//private StatoElfi statoElfi;
 
-    public BabboNatale(StatoRenne _statoRenne)
+    public BabboNatale(Stato _stato)
 	{
-		statoRenne=_statoRenne;
+		stato=_stato;
     }
 
 	public void run()
@@ -16,8 +16,9 @@ public class BabboNatale implements Runnable
 			try
 			{
 				System.out.println("Babbo Natale dorme");
-				statoRenne.aspettaRenne();
-				statoRenne.distribuisciRegali();
+				stato.dorme();
+				if(stato.tutteRenneTornate()) stato.distribuisciRegali();
+				if(stato.treElfiInCoda()) stato.aiutaElfi();
 			}
 			catch(Exception e)
 			{
