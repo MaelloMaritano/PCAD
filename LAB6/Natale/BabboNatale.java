@@ -1,28 +1,28 @@
 package Natale;
 public class BabboNatale implements Runnable
 {
-	PoloNord status;
+	private StatoRenne statoRenne;
+	//private StatoElfi statoElfi;
 
-    public BabboNatale(PoloNord _status)
+    public BabboNatale(StatoRenne _statoRenne)
 	{
-		status=_status;
+		statoRenne=_statoRenne;
     }
+
 	public void run()
 	{
 		while(true)
 		{
-			while(!status.abbastanzaElfiInDifficolta() || status.tutteRenneArrivate())
+			try
 			{
-				try
-				{
-					status.wait();
-					System.out.println("Babbo Natale dorme");
-				}
-				catch(Exception e)
-				{
-					System.out.println(e);
-					e.printStackTrace();
-				}
+				System.out.println("Babbo Natale dorme");
+				statoRenne.aspettaRenne();
+				statoRenne.distribuisciRegali();
+			}
+			catch(Exception e)
+			{
+				System.out.println(e);
+				e.printStackTrace();
 			}
 		}
 	}
